@@ -22,9 +22,17 @@ const HeroBanner = () => {
         setBackground(bg);
     }, [data]);
 
-    const searchQueryHandler = (event) => {
-        if (event.key === "Enter" && query.length > 0) {
+    const navigateToSearch = () => {
+        // This is the core navigation logic, run by both mouse and keyboard
+        if (query.length > 0) {
             navigate(`/search/${query}`);
+        }
+    };
+    
+    const onEnterPress = (event) => {
+        // This checks for the 'Enter' key specifically
+        if (event.key === "Enter" && query.length > 0) {
+            navigateToSearch();
         }
     };
 
@@ -49,9 +57,11 @@ const HeroBanner = () => {
                             type="text"
                             placeholder="Search for a movie or tv show...."
                             onChange={(e) => setQuery(e.target.value)}
-                            onKeyUp={searchQueryHandler}
+                            // HIGHLIGHTED CHANGE: Use the new Enter handler
+                            onKeyUp={onEnterPress} 
                         />
-                        <button>Search</button>
+                        {/* HIGHLIGHTED CHANGE: Use the new navigation logic for button click */}
+                        <button onClick={navigateToSearch}>Search</button> 
                     </div>
                 </div>
             </ContentWrapper>
