@@ -1,0 +1,157 @@
+/* moviestan/src/chatbot.scss */
+
+// Use your project's existing color variables for a seamless look
+$primary-color: #DA2F68; // (The pink color from your screenshots)
+$text-color-light: #fff;
+$background-dark: #04152D; // (The main site background color)
+$chat-window-background: #092140; // NEW: Slightly lighter dark for contrast
+$message-bg-ai: #1c3c54; // AI message bubble background (darker for contrast against the new window background)
+$message-bg-user: $primary-color;
+
+.chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: $primary-color;
+  color: $text-color-light;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); // Slightly darker shadow for visibility
+  z-index: 1000;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.ai-chatbot-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 450px;
+  background: $chat-window-background; /* CHANGED: Using the slightly lighter dark color */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ADDED: Subtle white border for separation */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Darker shadow */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: darken($chat-window-background, 5%); /* CHANGED: Using a darker shade of the new window color */
+    color: $text-color-light;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h3 { margin: 0; font-size: 18px; }
+    .close-btn {
+      background: none; border: none; color: $text-color-light; 
+      cursor: pointer; opacity: 0.7;
+      &:hover { opacity: 1; }
+    }
+  }
+
+  .chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: $chat-window-background; /* Stays the new window color */
+    
+    // Custom scrollbar for better look
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+  }
+
+  .chat-message {
+    max-width: 80%;
+
+    &.user {
+      align-self: flex-end;
+      .message-text { background: $message-bg-user; }
+    }
+
+    &.ai {
+      align-self: flex-start;
+      .message-text { background: $message-bg-ai; }
+    }
+
+    .message-text {
+      padding: 10px 15px;
+      border-radius: 16px;
+      font-size: 14px;
+      color: $text-color-light;
+      word-wrap: break-word;
+    }
+    
+    // Typing indicator styling
+    &.typing {
+        .message-text { display: flex; gap: 4px; align-items: center; }
+        .typing-dots span {
+            display: inline-block; width: 8px; height: 8px;
+            background-color: $text-color-light; border-radius: 50%;
+            animation: bounce 1.2s infinite ease-in-out; opacity: 0.6;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .chat-input-form {
+    display: flex;
+    padding: 10px 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    input {
+      flex-grow: 1; padding: 10px; border: none; border-radius: 20px;
+      margin-right: 10px; 
+      background: darken($chat-window-background, 5%); /* NEW: Input background slightly darker than window */
+      color: $text-color-light;
+      outline: none;
+    }
+
+    button {
+      background: $primary-color; border: none; border-radius: 50%;
+      width: 40px; height: 40px; color: $text-color-light;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background-color 0.2s ease;
+
+      &:hover:not(:disabled) { background: darken($primary-color, 10%); }
+      &:disabled { background: #5a5a5a; cursor: not-allowed; }
+    }
+  }
+}
