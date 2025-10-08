@@ -5,7 +5,7 @@
 
 Discover real-time movies and TV shows with detailed information using, 🎥 The Moviestan App: A dynamic and fully responsive web app that explores Trending, Upcoming, and Top-rated exciting movies and web shows.🍿 Built with React, Axios, Redux, and Custom Hooks, it fetches data in real-time from TMDB’s API, offering an immersive experience with the help of various useful React libraries. This app offers a responsive and visually appealing user interface that adapts seamlessly to various screen sizes.
 
-<h2>Live link 🌍📡 - [ YOUR LIVE VERCEL LINK HERE ]</h2>
+<h2>Live link 🌍📡 - movieapp-beta-amber.vercel.app </h2>
 
 # 🖥️ Screen Preview: 
 ## Search Result
@@ -92,12 +92,3 @@ In the development of Moviestan, we express our gratitude to the following third
 ### ⚠️ Disclaimer
 
 Please note that Moviestan relies on the TMDB API to fetch movie and TV show data. The accuracy, completeness, and availability of the data are subject to TMDB's policies and may be subject to change.
-
-## Contact
-If you have any questions or feedback, feel free to reach out:
-- LinkedIn : [Your LinkedIn Link]
-- GitHub : [Your GitHub Link]
-
-### 💖Like my work?
-
-This project needs a ⭐️ from you. Don't forget to leave a star ⭐️.
