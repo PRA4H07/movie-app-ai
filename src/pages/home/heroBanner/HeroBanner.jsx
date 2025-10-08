@@ -22,19 +22,26 @@ const HeroBanner = () => {
         setBackground(bg);
     }, [data]);
 
-    const navigateToSearch = () => {
-        // This is the core navigation logic, run by both mouse and keyboard
+    // ----------------------------------------------------
+    // HIGHLIGHTED CHANGE 1: New core navigation function
+    // ----------------------------------------------------
+    const startSearch = () => {
         if (query.length > 0) {
             navigate(`/search/${query}`);
         }
     };
-    
+
+    // ----------------------------------------------------
+    // HIGHLIGHTED CHANGE 2: Simplified key up handler
+    // ----------------------------------------------------
     const onEnterPress = (event) => {
-        // This checks for the 'Enter' key specifically
-        if (event.key === "Enter" && query.length > 0) {
-            navigateToSearch();
+        // Only trigger the search if the Enter key is pressed
+        if (event.key === "Enter") {
+            startSearch();
         }
     };
+    // ----------------------------------------------------
+
 
     return (
         <div className="heroBanner">
@@ -57,11 +64,11 @@ const HeroBanner = () => {
                             type="text"
                             placeholder="Search for a movie or tv show...."
                             onChange={(e) => setQuery(e.target.value)}
-                            // HIGHLIGHTED CHANGE: Use the new Enter handler
-                            onKeyUp={onEnterPress} 
+                            // Update to use the simpler key handler
+                            onKeyUp={onEnterPress}
                         />
-                        {/* HIGHLIGHTED CHANGE: Use the new navigation logic for button click */}
-                        <button onClick={navigateToSearch}>Search</button> 
+                        {/* HIGHLIGHTED CHANGE 3: Button now calls the navigation function directly */}
+                        <button onClick={startSearch}>Search</button> 
                     </div>
                 </div>
             </ContentWrapper>
