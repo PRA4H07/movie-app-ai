@@ -29,7 +29,7 @@ const Footer = () => {
           information about each title, including trailers and related videos.
         </div>
         <div className="socialIcons">
-        <Link to={`https://github.com/yashk9293/moviestan`} target="_blank">
+        <Link to={`https://github.com/PRA4H07/movie-app-ai`} target="_blank">
           <span className="icon">
             <FaGithub />
           </span>
